@@ -1,0 +1,20 @@
+{
+    "cmake.generator": "Ninja",
+    "cmake.cmakePath": "${userHome}/.pico-sdk/cmake/v4.3.4/bin/cmake",
+    "cmake.configureOnOpen": true,
+    "cmake.buildTask": true,
+    "cmake.configureSettings": {
+        "PICO_BOARD": "seeed_xiao_rp2350",
+        "PICO_PLATFORM": "rp2350",
+        "PICO_SDK_PATH": "${userHome}/.pico-sdk/sdk/2.3.0",
+        "PICO_TOOLCHAIN_PATH": "${userHome}/.pico-sdk/toolchain/15_2_Rel1",
+        "CMAKE_MAKE_PROGRAM": "${userHome}/.pico-sdk/ninja/v1.13.2/ninja.exe"
+    },
+    "terminal.integrated.env.windows": {
+        "PICO_SDK_PATH": "${env:USERPROFILE}/.pico-sdk/sdk/2.3.0",
+        "PICO_TOOLCHAIN_PATH": "${env:USERPROFILE}/.pico-sdk/toolchain/15_2_Rel1",
+        "Path": "${env:USERPROFILE}/.pico-sdk/toolchain/15_2_Rel1/bin;${env:USERPROFILE}/.pico-sdk/cmake/v4.3.4/bin;${env:USERPROFILE}/.pico-sdk/ninja/v1.13.2;${env:PATH}"
+    },
+    "raspberry-pi-pico.cmakeAutoConfigure": false,
+    "raspberry-pi-pico.useCmakeTools": true
+}
