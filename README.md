@@ -1,8 +1,8 @@
 # 俺はMSX用ゲームパッドをUSBで使いたいんじゃ<br>for Seeed Studio XIAO RP2350<br>(MSXPAD2USB)
 
-![回路図](./schmatic/sch.png)
+![基板](./image/img001.jpg)
 
-![基板図面](./schmatic/pcb.png)
+![基板裏](./image/img000.jpg)
 
 MSX用ゲームパッドの方向キーと2ボタンを、USB HIDゲームパッドへ変換するアダプタです。  
 Seeed Studio XIAO RP2350を使って作りました。
@@ -20,6 +20,17 @@ USB DescriptorはHORI POKKEN CONTROLLER (`VID=0x0F0D`, `PID=0x0092`) の情報�
 - Hat Switchによる8方向入力
 - 2ボタン入力
 - 5ms周期でInput Reportを送信
+
+## 添付品
+ 1. 専用PCB
+ 2. 集合抵抗 10Kx4
+ 3. D-SUB 9Pin コネクタ (ネジなど付属部品を含む)
+![添付品](./image/img002.jpg)
+
+ 
+マイコンボードは含まれません。speed XIAO-RP2350が別途必要です。秋月電子などで購入できます。  
+
+https://wiki.seeedstudio.com/ja/getting-started-xiao-rp2350/
 
 ## フォルダー構成
 
@@ -41,8 +52,6 @@ MSXPAD2USB/
    └─ MSXPAD2USB - 2026-09-19.zip
                                Gerber／ドリルデータ
 ```
-
-※`schmatic`は現在の実フォルダー名に合わせています。
 
 ## XIAO RP2350との配線
 
@@ -175,6 +184,11 @@ Pico SDK本体やユーザー環境にインストールされたTinyUSBは直�
 - GPIO1～GPIO6には内蔵プル抵抗を設定していません。
 - 入力は通常HIGH、操作時LOWになる外部回路を前提としています。
 - GPIO7はLOW出力です。外部からHIGHを直接印加しないでください。
+
+## ライセンス
+
+本プロジェクトのライセンスは、MITライセンスになります。  
+コードの一部にはRaspberry Pi Pico SDKおよびTinyUSB由来のコードを含みます。各依存ライブラリのライセンス条件にも従ってください。
 
 ## 使用したlibraryについて
 
