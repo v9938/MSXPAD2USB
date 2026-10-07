@@ -51,12 +51,7 @@ static void gpio_setup(void) {
   gpio_set_dir(GPIO_OUTPUT_LOW, GPIO_OUT);
 }
 
-static uint8_t read_hat(void) {
-  bool up = !gpio_get(GPIO_HAT_UP);
-  bool down = !gpio_get(GPIO_HAT_DOWN);
-  bool left = !gpio_get(GPIO_HAT_LEFT);
-  bool right = !gpio_get(GPIO_HAT_RIGHT);
-
+static uint8_t read_hat(bool up, bool down, bool left, bool right) {
   if (up == down) up = down = false;
   if (left == right) left = right = false;
 
@@ -72,9 +67,14 @@ static uint8_t read_hat(void) {
 }
 
 static gamepad_report_t read_gamepad(void) {
+  bool const up = !gpio_get(GPIO_HAT_UP);
+  bool const down = !gpio_get(GPIO_HAT_DOWN);
+  bool const left = !gpio_get(GPIO_HAT_LEFT);
+  bool const right = !gpio_get(GPIO_HAT_RIGHT);
+
   gamepad_report_t report = {
     .buttons = 0,
-    .hat = read_hat(),
+    .hat = read_hat(up, down, left, right),
     .x = 0x80,
     .y = 0x80,
     .z = 0x80,
@@ -82,8 +82,10 @@ static gamepad_report_t read_gamepad(void) {
     .vendor = 0
   };
 
-  if (!gpio_get(GPIO_BUTTON_0)) report.buttons |= 1u << 0;
-  if (!gpio_get(GPIO_BUTTON_1)) report.buttons |= 1u << 1;
+  if (!gpio_get(GPIO_BUTTON_0)) report.buttons |= HORI_BUTTON_Y;
+  if (!gpio_get(GPIO_BUTTON_1)) report.buttons |= HORI_BUTTON_B;
+  if (up && down) report.buttons |= HORI_BUTTON_HOME;
+  if (left && right) report.buttons |= HORI_BUTTON_ZR;
   return report;
 }
 
